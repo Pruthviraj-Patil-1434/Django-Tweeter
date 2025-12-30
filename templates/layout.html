@@ -18,6 +18,45 @@
     ></script>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Tweeter</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'tweet_list' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Login
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+            <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" role="search" method="post" action="{% url '' %}">
+        {% csrf_token %}
+        <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="search" />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      {%if user.is_authenticated %}
+        <form method="post" action="{% url 'logout'%}">
+        {% csrf_token %}
+          <button class="btn btn-danger mx-2" type="submit">Logout</button>
+      </form>
+      {%else %}
+      {%endif%}
+    </div>
+  </div>
+</nav>
     <div class="containter text-center"> <h1 class="text-center"> Welcome to the Django App</h1></div>
     <div class="container">{% block content %} {% endblock %}</div>
   </body>
