@@ -29,9 +29,6 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'tweet_list' %}">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Login
@@ -42,7 +39,7 @@
           </ul>
         </li>
       </ul>
-      <form class="d-flex" role="search" method="post" action="{% url '' %}">
+      <form class="d-flex" role="search" method="post" action="{% url 'search' %}">
         {% csrf_token %}
         <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="search" />
         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -57,7 +54,7 @@
     </div>
   </div>
 </nav>
-    <div class="containter text-center"> <h1 class="text-center"> Welcome to the Django App</h1></div>
+    <div class="containter text-center mb-5"> <h1 class="text-center"> Welcome to the Django Tweeter</h1></div>
     <div class="container">{% block content %} {% endblock %}</div>
   </body>
 </html>

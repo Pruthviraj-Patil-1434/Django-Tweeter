@@ -66,3 +66,11 @@ def register(request):
 def tweets(reqeust):
     tweets=Tweet.objects.all().order_by('-created_at')
     return render(reqeust,'index.html',{'tweets':tweets})
+
+def search(request):
+    if request.method == 'POST':
+        text = request.POST.get('search')
+        tweets = Tweet.objects.filter(text__icontains=text)
+        return render(request, 'index.html', {'tweets': tweets})
+
+    return redirect('tweets')
